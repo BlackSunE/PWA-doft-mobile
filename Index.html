@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es_ES">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>First PWA model</title>
+  <title>First PWA model DOFT</title>
+  <!--Manifiesto-->
+  <link rel="manifest" href="./Manifest/manifest.json">
+  <meta name="theme-color" content="#1a1a1a">
+  <!-- Detección de Icono de PWA -->
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/icon_16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/icon_32x32.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="./img/icon_64x64.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./img/icon_96x96.png">
+    <link rel="icon" type="image/png" sizes="128x128" href="./img/icon_128x128.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./img/icon_192x192.png">
+    <link rel="icon" type="image/png" sizes="256x256" href="./img/icon_256x256.png">
+    <link rel="icon" type="image/png" sizes="384x384" href="./img/icon_384x384.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="./img/icon_512x512.png">
+    <link rel="icon" type="image/png" sizes="1024x1024" href="./img/icon_1024x1024.png">
+  <!--meta etiquetas PWA en ios-->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="PWA-Doft">
+   <!-- Metatags Windows -->
+    <meta name="msapplication-TileColor" content="#F7DF1E">
+    <meta name="msapplication-TileImage" content="./img/icon_192x192.png">
   <link rel="stylesheet" href="./Styles/style.css">
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
 </head>
@@ -17,12 +39,43 @@
       </a>
     </div>
     <div id="lupa"><i class="fas fa-search"></i></div>
-    <div class="menu_desplegable">
-      <ul>
-        <li><a href="#">Productos</a></li>
-        <li><a href="#">Servicios</a></li>
-        <li><a href="#">Acerca de</a></li>
-        <li><a href="#">Contáctenos</a></li>
+    <div id="menu_desplegable">
+      <div id="close"><i class="far fa-times-circle" onClick="closenav()"></i></div>
+      <div id="acceso_rápido" class="clearfix">
+        <span id="loginO"><i class="fas fa-user"></i></span>
+        <span id="notificacionesO"><i class="fas fa-bell"></i></span>
+      </div>
+      <ul id="principal_mobile_list">
+        <li><a href="#"><i class="fas fa-caret-right"></i>estilo</a>
+          <ul>
+            <li><a href="#">Nueva Colección</a></li>
+            <li><a href="#">Accesorios</a></li>
+            <li><a href="#">Camisetas &amp; Camisas</a></li>
+            <li><a href="#">Chaquetas</a></li>
+            <li><a href="#">Pantalones</a></li>
+            <li><a href="#">Sudaderas</a></li>
+          </ul>
+        </li>
+        <li><a href="#"><i class="fas fa-caret-right"></i>personaliza</a>
+          <ul>
+            <li><a href="#">Nueva Colección</a></li>
+            <li><a href="#">Accesorios</a></li>
+            <li><a href="#">Camisetas &amp; Camisas</a></li>
+            <li><a href="#">Chaquetas</a></li>
+            <li><a href="#">Pantalones</a></li>
+            <li><a href="#">Sudaderas</a></li>
+          </ul>
+        </li>
+        <li><a href="#"><i class="fas fa-caret-right"></i>novedades</a>
+          <ul>
+            <li><a href="#">Nueva Colección</a></li>
+            <li><a href="#">Accesorios</a></li>
+            <li><a href="#">Camisetas &amp; Camisas</a></li>
+            <li><a href="#">Chaquetas</a></li>
+            <li><a href="#">Pantalones</a></li>
+            <li><a href="#">Sudaderas</a></li>
+          </ul>
+        </li>
       </ul>
     </div>
   </header>
@@ -32,6 +85,21 @@
     </form>
   </div>
   <footer>
+  	<ul>
+  		<li name="content"><a>Social-media</a></li>
+  		<li><a>Novedades</a></li>
+  		<li><a>Acerca de</a></li>
+  		<li name="content"><a>Ayuda</a></li>
+  		<li name="content"><a>Contacto</a></li>
+  	</ul>
+  	<ul>
+  		<li><a><i class="fab fa-rocketchat"></i></a></li>
+  		<li><a><i class="fas fa-envelope"></i></a></li>
+  	</ul>
+  	<ul>
+  		<li><a>©Doft 2019. Todos los derechos reservados. Powered by</a></li>
+  		<li><img src="./Logos/Colaboracion_EJ2_blanco.svg" alt="EJ"></li>
+  	</ul>
   </footer>
 </body>
 </html>

@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 *{
   margin: 0;
   padding: 0;
@@ -5,6 +7,11 @@
 
 ul,ol {
   list-style: none;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
 }
 
 #Logo {
@@ -16,11 +23,76 @@ ul,ol {
   transform: scale(0.8);
 }
 
-.menu_desplegable {
+#menu_desplegable {
   position: fixed;
-  height: 100%;
   background: #fff;
   width: 70%;
+  left: -70%;
+  display: table;
+  height: 100vh;
+  -webkit-transition: left 0.4s ease;
+  -moz-transition: left 0.4s ease;
+  -o-transition: left 0.4s ease;
+  transition: left 0.4s ease;
+  overflow-y: scroll;
+}
+
+#principal_mobile_list li > ul {
+  display: none;
+}
+
+#principal_mobile_list {
+  margin-top: 50px;
+}
+
+#principal_mobile_list > li {
+  border-bottom: #2E2E2E 1px groove;
+}
+
+#principal_mobile_list > li > a{
+  position: relative;
+}
+
+#principal_mobile_list li {
+  text-align: center;
+}
+
+#principal_mobile_list li a {
+  text-transform: uppercase;
+  line-height: 3em;
+  display: block;
+}
+
+.fa-times-circle {
+  font-size: 24px;
+  float: right;
+  margin: 12px;
+}
+
+.fa-caret-right {
+  position: absolute;
+  left: 25%;
+  top: 49%;
+  margin-top: -9px;
+}
+
+.rotate {
+  -moz-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.fa-bell, .fa-user {
+  font-size: 28px;
+}
+
+[id$="O"]:first-child {
+  padding-left: 30px;
+}
+
+[id$="O"] {
+  line-height: 4em;
+  padding: 0 10px;
 }
 
 header {
@@ -39,7 +111,7 @@ header > div:not(:last-child) {
   display: inline-table;
 }
 
-header > div:not(:nth-child(2)) {
+#barras, #lupa {
   padding: 0px 20px;
 }
 
@@ -48,18 +120,17 @@ header > div:not(:nth-child(2)) {
 }
 
 #buscador {
-  width: 100vw;
   background: #737373;
-  padding: 4px 1%;
+  padding: 4px 1% 6px 1%;
   position: relative;
   z-index: 5;
 }
 
 #buscador input {
-  width: 98%;
-  border-radius: 8px;
-  padding: 3px 30px 3px 20px;
   box-sizing: border-box;
+  width: 100%;
+  border-radius: 8px;
+  padding: 3px calc(2% + 13px) 3px 20px;
 }
 
 #buscador button {
@@ -67,7 +138,7 @@ header > div:not(:nth-child(2)) {
   background: transparent;
   border: none;
   top: 9px;
-  left: 95.5%;
+  right: calc(2% + 3px);
 }
 
 #buscador .fa-times {
@@ -84,4 +155,58 @@ body {
 
 *, *:focus {
   outline: none;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  padding-top: 20px;
+	display: grid;
+	width: 100%;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, minmax(60px, auto));
+	grid-auto-rows: 60px;
+	background: #1a1a1a;
+	justify-items: center;
+	align-items: center;
+}
+
+footer > ul:first-child {
+	grid-column: span 1;
+	justify-self: start;
+	margin-left: 17.48%;
+}
+
+footer > ul:nth-child(2) {
+	grid-column: 2 / 3;
+	justify-self: end;
+	margin-right: 17.48%;
+}
+
+footer > ul:last-child {
+	grid-column: span 2;
+}
+
+footer > ul a {
+	color: #fff;
+	cursor: pointer;
+}
+
+footer > ul:not(:last-child) a {
+	font-size: 1em;
+	text-transform: uppercase;
+}
+
+footer > ul:last-child a {
+	font-size: 0.8em;
+}
+
+footer > ul li {
+	padding: 7px;
+	display: inline-block;
+}
+
+footer li img {
+	height: 23px;
+	margin: 0 0 -7px -8px;
 }

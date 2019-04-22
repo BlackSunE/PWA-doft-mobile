@@ -27,20 +27,23 @@
    <!-- Metatags Windows -->
     <meta name="msapplication-TileColor" content="#F7DF1E">
     <meta name="msapplication-TileImage" content="./img/icon_192x192.png">
+  <!--Styles-->
   <link rel="stylesheet" href="./Styles/style.css">
+  <!--Google fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
-    <div id="barras"><i class="fas fa-bars"></i></div>
+    <div id="barras"><i class="fas fa-bars" onclick="opennav()"></i></div>
     <div id="Logo">
       <a href="index.html">
         <img src="./Logos/Official_logo_mejorado.svg" alt="Doft">
       </a>
     </div>
-    <div id="lupa"><i class="fas fa-search"></i></div>
+    <div id="lupa"><i class="fas fa-search" onclick="hide()"></i></div>
     <div id="menu_desplegable">
-      <div id="close"><i class="far fa-times-circle" onClick="closenav()"></i></div>
+      <div id="close"><i class="far fa-times-circle" onclick="closenav()"></i></div>
       <div id="acceso_rápido" class="clearfix">
         <span id="loginO"><i class="fas fa-user"></i></span>
         <span id="notificacionesO"><i class="fas fa-bell"></i></span>
@@ -79,11 +82,14 @@
       </ul>
     </div>
   </header>
-  <div id="buscador">
+  <div id="buscador" class="esconder">
     <form action="">
       <input type="text" name="Buscar" required="" autocomplete="off" placeholder="Buscar..."><button class="cancel-search" type="reset" value="reset"><i class="fas fa-times"></i></button>
     </form>
   </div>
+  <section>
+    <img src="./Images/Condimento para tacos hecho en casa 2.jpg" alt="tacos" style="width:100%;">
+  </section>
   <footer>
   	<ul>
   		<li name="content"><a>Social-media</a></li>
@@ -101,5 +107,19 @@
   		<li><img src="./Logos/Colaboracion_EJ2_blanco.svg" alt="EJ"></li>
   	</ul>
   </footer>
+  <script type="text/javascript">
+
+    var menu = document.getElementById('menu_desplegable');
+    function opennav() {
+      menu.style.left = "0";
+    }
+    function closenav() {
+      menu.style.left = "-70%";
+    }
+
+    function hide() {
+      document.getElementById('buscador').classList.toggle('esconder');
+    }
+  </script>
 </body>
 </html>

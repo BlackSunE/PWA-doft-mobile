@@ -12,6 +12,13 @@ ul,ol {
 a {
   color: #000;
   text-decoration: none;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.svg-inline--fa {
+  cursor: pointer;
 }
 
 #Logo {
@@ -111,19 +118,25 @@ header > div:not(:last-child) {
   display: inline-table;
 }
 
-#barras, #lupa {
-  padding: 0px 20px;
-}
-
 #lupa {
   justify-self: end;
 }
 
+.fa-bars, .fa-search {
+  padding: 0px 20px;
+}
+
 #buscador {
   background: #737373;
-  padding: 4px 1% 6px 1%;
+  padding: 0 1%;
+  max-height: 0px;
   position: relative;
+  overflow: hidden;
   z-index: 5;
+  -webkit-transition: all .15s ease;
+  -moz-transition: all .15s ease;
+  -o-transition: all .15s ease;
+  transition: all .15s ease;
 }
 
 #buscador input {
@@ -145,6 +158,11 @@ header > div:not(:last-child) {
   font-size: 16px;
 }
 
+.esconder {
+  max-height: 200px !important;
+  padding: 4px 1% 6px 1% !important;
+}
+
 input[type="text"]:not(:valid) ~ .cancel-search {
 	display: none;
 }
@@ -158,8 +176,6 @@ body {
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
   padding-top: 20px;
 	display: grid;
 	width: 100%;
@@ -192,18 +208,25 @@ footer > ul a {
 	cursor: pointer;
 }
 
-footer > ul:not(:last-child) a {
-	font-size: 1em;
+footer > ul:first-child a {
+	font-size: 0.8em;
 	text-transform: uppercase;
 }
 
+footer > ul:nth-child(2) a {
+  font-size: 1.4em;
+}
+
+footer > ul:last-child li {
+	display: inline-block;
+}
+
 footer > ul:last-child a {
-	font-size: 0.8em;
+	font-size: 0.6em;
 }
 
 footer > ul li {
 	padding: 7px;
-	display: inline-block;
 }
 
 footer li img {

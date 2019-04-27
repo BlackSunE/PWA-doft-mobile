@@ -113,6 +113,7 @@
     function opennav() {
       menu.style.left = "0";
     }
+
     function closenav() {
       menu.style.left = "-70%";
     }
@@ -120,6 +121,24 @@
     function hide() {
       document.getElementById('buscador').classList.toggle('esconder');
     }
+
+    $("#principal_mobile_list > li > a").addEventListener("click", function() {
+      var padre = this.parentNode;
+      console.log(padre.nodeName)
+      var lista = padre.querySelector("ul");
+
+      if(lista.style.display === "none"){
+        lista.style.display = "block";
+
+      } else {
+        lista.style.display = "none";
+      }
+    });
+
+    function $(selector) {
+      return document.querySelector(selector);
+    }
+
   </script>
 </body>
 </html>

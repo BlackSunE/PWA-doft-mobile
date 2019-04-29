@@ -82,7 +82,7 @@
       </ul>
     </div>
   </header>
-  <div id="buscador" class="esconder">
+  <div id="buscador">
     <form action="">
       <input type="text" name="Buscar" required="" autocomplete="off" placeholder="Buscar..."><button class="cancel-search" type="reset" value="reset"><i class="fas fa-times"></i></button>
     </form>
@@ -119,20 +119,18 @@
     }
 
     function hide() {
-      document.getElementById('buscador').classList.toggle('esconder');
+      var buscador = document.getElementById('buscador');
+      const toggle = buscador.classList.toggle('esconder');
+      function quitarPadding(padding, height) {buscador.style.padding = padding; buscador.style.maxHeight = height;};
+
+        if(toggle == true) {
+          setTimeout(quitarPadding("4px 1% 6px 1%", "0px"), 150);
+      } else {
+          quitarPadding("0 1% !important", "200px");
+      }
     }
 
     $("#principal_mobile_list > li > a").addEventListener("click", function() {
-      var padre = this.parentNode;
-      console.log(padre.nodeName)
-      var lista = padre.querySelector("ul");
-
-      if(lista.style.display === "none"){
-        lista.style.display = "block";
-
-      } else {
-        lista.style.display = "none";
-      }
     });
 
     function $(selector) {

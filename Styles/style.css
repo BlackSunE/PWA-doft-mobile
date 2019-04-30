@@ -45,15 +45,18 @@ a {
 }
 
 #principal_mobile_list li > ul {
-  display: none;
-  -webkit-transition: display 0.2s ease;
-  -moz-transition: display 0.2s ease;
-  -o-transition: display 0.2s ease;
-  transition: display 0.2s ease;
+  overflow: hidden;
+  max-height: 0px;
+  z-index: 4;
+  -webkit-transition: max-height 0.2s ease;
+  -moz-transition: max-height 0.2s ease;
+  -o-transition: max-height 0.2s ease;
+  transition: max-height 0.2s ease;
 }
 
 #principal_mobile_list {
   margin-top: 50px;
+  z-index: 6;
 }
 
 #principal_mobile_list > li {
@@ -134,13 +137,12 @@ header > div:not(:last-child) {
 #buscador {
   background: #737373;
   overflow: hidden;
-  padding: 4px 1% 6px 1%;
   position: relative;
   z-index: 5;
-  -webkit-transition: all .15s ease;
-  -moz-transition: all .15s ease;
-  -o-transition: all .15s ease;
-  transition: all .15s ease;
+  -webkit-transition: max-height .20s ease, padding .10s ease;
+  -moz-transition: max-height .20s ease, padding .10s ease;
+  -o-transition: max-height .20s ease, padding .10s ease;
+  transition: max-height .20s ease, padding .10s ease;
 }
 
 #buscador input {

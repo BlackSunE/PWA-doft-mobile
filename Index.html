@@ -37,7 +37,7 @@
   <header>
     <div id="barras"><i class="fas fa-bars" onclick="opennav()"></i></div>
     <div id="Logo">
-      <a >
+      <a href="index.html">
         <img src="./Logos/Official_logo_mejorado.svg" alt="Doft">
       </a>
     </div>
@@ -82,7 +82,7 @@
       </ul>
     </div>
   </header>
-  <div id="buscador">
+  <div id="buscador" style="padding: 4px 1% 6px 1%; max-height: 90px">
     <form action="">
       <input type="text" name="Buscar" required="" autocomplete="off" placeholder="Buscar..."><button class="cancel-search" type="reset" value="reset"><i class="fas fa-times"></i></button>
     </form>
@@ -114,19 +114,31 @@
     }
 
     function closenav() {
-      $('#menu_desplegable').menu.style.left = "-70%";
+      $('#menu_desplegable').style.left = "-70%";
     }
 
     function hide() {
       var buscador = $('#buscador');
-        if (buscador.style.padding === "0px 1%") {
-          buscador.style.padding = "4px 1% 6px 1%";
-          buscador.style.maxHeight = "90px";
-      } else {
-        buscador.style.maxHeight = "0px";
-        setTimeout(function() {buscador.style.padding = "0px 1%"}, 100);
+      function delayHeight(maxheight, padding) {
+        buscador.style.maxHeight = maxheight;
+        setTimeout(function() {buscador.style.padding = padding}, 50);
       }
+        if (buscador.style.padding === "0px 1%") {
+          delayHeight("90px", "4px 1% 6px 1%");
+        } else {
+          delayHeight("0px", "0px 1%");
+        }
     }
+
+    $('#principal_mobile_list > li > a').addEventListener("click", function() {
+      console.log(this.parentNode);
+      var listas = this.parentNode.querySelector('ul');
+        if(listas.style.maxHeight === "0px") {
+          listas.setAttribute('style', 'max-height: 300px')
+        } else {
+          listas.setAttribute('style', 'max-height: 0px;')
+        }
+    });
 
     function $(selector) {
       return document.querySelector(selector);

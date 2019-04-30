@@ -108,6 +108,7 @@ a {
 
 header {
   display: grid;
+  background: #fff;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 55px;
   align-items: center;
@@ -132,9 +133,9 @@ header > div:not(:last-child) {
 
 #buscador {
   background: #737373;
-  padding: 4px 1% 6px 1%; 
-  position: relative;
   overflow: hidden;
+  padding: 4px 1% 6px 1%;
+  position: relative;
   z-index: 5;
   -webkit-transition: all .15s ease;
   -moz-transition: all .15s ease;

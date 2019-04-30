@@ -37,7 +37,7 @@
   <header>
     <div id="barras"><i class="fas fa-bars" onclick="opennav()"></i></div>
     <div id="Logo">
-      <a href="index.html">
+      <a >
         <img src="./Logos/Official_logo_mejorado.svg" alt="Doft">
       </a>
     </div>
@@ -109,29 +109,24 @@
   </footer>
   <script type="text/javascript">
 
-    var menu = document.getElementById('menu_desplegable');
     function opennav() {
-      menu.style.left = "0";
+      $('#menu_desplegable').style.left = "0";
     }
 
     function closenav() {
-      menu.style.left = "-70%";
+      $('#menu_desplegable').menu.style.left = "-70%";
     }
 
     function hide() {
-      var buscador = document.getElementById('buscador');
-      const toggle = buscador.classList.toggle('esconder');
-      function quitarPadding(padding, height) {buscador.style.padding = padding; buscador.style.maxHeight = height;};
-
-        if(toggle == true) {
-          setTimeout(quitarPadding("4px 1% 6px 1%", "0px"), 150);
+      var buscador = $('#buscador');
+        if (buscador.style.padding === "0px 1%") {
+          buscador.style.padding = "4px 1% 6px 1%";
+          buscador.style.maxHeight = "90px";
       } else {
-          quitarPadding("0 1% !important", "200px");
+        buscador.style.maxHeight = "0px";
+        setTimeout(function() {buscador.style.padding = "0px 1%"}, 100);
       }
     }
-
-    $("#principal_mobile_list > li > a").addEventListener("click", function() {
-    });
 
     function $(selector) {
       return document.querySelector(selector);

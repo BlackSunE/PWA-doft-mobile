@@ -46,7 +46,6 @@ a {
 
 #principal_mobile_list li > ul {
   overflow: hidden;
-  max-height: 0px;
   z-index: 4;
   -webkit-transition: max-height 0.2s ease;
   -moz-transition: max-height 0.2s ease;
@@ -139,10 +138,10 @@ header > div:not(:last-child) {
   overflow: hidden;
   position: relative;
   z-index: 5;
-  -webkit-transition: max-height .20s ease, padding .10s ease;
-  -moz-transition: max-height .20s ease, padding .10s ease;
-  -o-transition: max-height .20s ease, padding .10s ease;
-  transition: max-height .20s ease, padding .10s ease;
+  -webkit-transition: max-height .10s ease, padding .05s ease;
+  -moz-transition: max-height .10s ease, padding .05s ease;
+  -o-transition: max-height .10s ease, padding .05s ease;
+  transition: max-height .10s ease, padding .05s ease;
 }
 
 #buscador input {

@@ -50,7 +50,7 @@
       </div>
       <ul id="principal_mobile_list">
         <li><a href="#"><i class="fas fa-caret-right"></i>estilo</a>
-          <ul style="max-height: 0px;">
+          <ul>
             <li><a href="#">Nueva Colección</a></li>
             <li><a href="#">Accesorios</a></li>
             <li><a href="#">Camisetas &amp; Camisas</a></li>
@@ -130,18 +130,29 @@
         }
     }
 
-    $('#principal_mobile_list > li > a').addEventListener("click", function() {
-      console.log(this.parentNode);
-      var listas = this.parentNode.querySelector('ul');
-        if(listas.style.maxHeight === "0px") {
-          listas.setAttribute('style', 'max-height: 300px')
-        } else {
-          listas.setAttribute('style', 'max-height: 0px;')
-        }
-    });
+    const aButton = $A('#principal_mobile_list > li > a');
+    const listasDesplegable = $A('#principal_mobile_list li > ul');
+    const rotarFlechas = $A('.fa-caret-right');
+    listasDesplegable.forEach(el => {el.style.maxHeight = "0px";});
+    rotarFlechas.forEach(el => {el.style.transform = "rotate(0deg)"});
+      for(let i = 0; i < aButton.length; i++){
+        aButton[i].addEventListener("click", function() {
+          if (listasDesplegable[i].style.maxHeight === "0px") {
+            listasDesplegable[i].style.maxHeight = "200px";
+            rotarFlechas[i].style.transform = "rotate(90deg)";
+          }  else {
+            listasDesplegable[i].style.maxHeight = "0px";
+            rotarFlechas[i].style.transform = "rotate(0deg)";
+          }
+        });
+      }
 
     function $(selector) {
       return document.querySelector(selector);
+    }
+
+    function $A(selectorAll) {
+      return document.querySelectorAll(selectorAll);
     }
 
   </script>

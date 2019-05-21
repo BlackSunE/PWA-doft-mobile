@@ -133,8 +133,10 @@
     const aButton = $A('#principal_mobile_list > li > a');
     const listasDesplegable = $A('#principal_mobile_list li > ul');
     const rotarFlechas = $A('.fa-caret-right');
-    listasDesplegable.forEach(el => {el.style.maxHeight = "0px"});
-    rotarFlechas.forEach(el => {el.style.transform = "rotate(0deg)"});
+    (function() {
+      listasDesplegable.forEach(el => {el.style.maxHeight = "0px"});
+      rotarFlechas.forEach(el => {el.style.transform = "rotate(0deg)"});
+    })();
     for(let i = 0; i < aButton.length; i++){
        function desplegar(height, rotate) {
          listasDesplegable[i].style.maxHeight = height;

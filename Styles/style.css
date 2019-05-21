@@ -46,6 +46,7 @@ a {
 
 #principal_mobile_list li > ul {
   overflow: hidden;
+  max-height: 0px;
   z-index: 4;
   -webkit-transition: max-height 0.2s ease;
   -moz-transition: max-height 0.2s ease;
@@ -89,9 +90,13 @@ a {
   margin-top: -9px;
 }
 
+.desplegar {
+  max-height: 200px !important;
+}
+
 .rotate {
   -moz-transform: rotate(90deg);
-    -webkit-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 

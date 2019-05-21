@@ -135,21 +135,19 @@
     const rotarFlechas = $A('.fa-caret-right');
     listasDesplegable.forEach(el => {el.style.maxHeight = "0px"});
     rotarFlechas.forEach(el => {el.style.transform = "rotate(0deg)"});
-
-      for(let i = 0; i < aButton.length; i++){
-        aButton[i].addEventListener("click", function () {
-          listasDesplegable.forEach(el => {el.style.maxHeight = "0px"});
-          rotarFlechas.forEach(el => {el.style.transform = "rotate(0deg)"});
-          
-          if (listasDesplegable[i].style.maxHeight === "0px") {
-            listasDesplegable[i].style.maxHeight = "200px";
-            rotarFlechas[i].style.transform = "rotate(90deg)";
-          }  else {
-            listasDesplegable[i].style.maxHeight = "0px";
-            rotarFlechas[i].style.transform = "rotate(0deg)";
-          }
-        });
-      }
+    for(let i = 0; i < aButton.length; i++){
+       function desplegar(height, rotate) {
+         listasDesplegable[i].style.maxHeight = height;
+         rotarFlechas[i].style.transform = rotate;
+       }
+       aButton[i].addEventListener("touchstart", function () {
+       if (listasDesplegable[i].style.maxHeight === "0px") {
+         desplegar("200px", "rotate(90deg)");
+       }  else {
+         desplegar("0px", "rotate(0deg)");
+       }
+     });
+     }
 
     function $(selector) {
       return document.querySelector(selector);

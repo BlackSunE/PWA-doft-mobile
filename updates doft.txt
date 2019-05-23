@@ -1,0 +1,31 @@
+.rotate {
+  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+}
+
+//Array.potoype.forEach.call() llama al Array en si lo que entiendo es que los HTMLCollections son Arrays dados a Array.prototype por eso hay que declarar explitamente a Array.p https://stackoverflow.com/questions/43743560/foreach-vs-array-prototype-foreach-call
+    const aButton = $A('#principal_mobile_list > li > a');
+    const listasDesplegable = $A('#principal_mobile_list li > ul');
+    const rotarFlechas = document.getElementsByClassName('fa-caret-right');
+    function porDefecto() {
+        Array.prototype.forEach.call(listasDesplegable, el => {el.style.maxHeight = "0px"});
+        Array.prototype.forEach.call(rotarFlechas, el => {el.classList.remove('rotate')});
+      }
+    porDefecto();
+    for(let i = 0; i < aButton.length; i++){
+       aButton[i].addEventListener("touchstart", function() {
+        var desplegar = function (height) {
+           listasDesplegable[i].style.maxHeight = height;
+           rotarFlechas[i].classList.toggle('rotate');
+         }
+            if (listasDesplegable[i].style.maxHeight <= "10px") {
+              porDefecto();
+              desplegar("200px");
+            } else {
+              desplegar("0px");
+            }
+      });
+    }

@@ -88,16 +88,15 @@ a {
   left: 25%;
   top: 49%;
   margin-top: -9px;
-}
-
-.desplegar {
-  max-height: 200px !important;
+  transform: rotate(0deg);
 }
 
 .rotate {
-  -moz-transform: rotate(90deg);
-  -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
 }
 
 .fa-bell, .fa-user {

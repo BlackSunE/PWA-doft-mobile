@@ -42,8 +42,9 @@
       </a>
     </div>
     <div id="lupa"><i class="fas fa-search" onclick="hide()"></i></div>
+    <!-- Menu Dipositivo mobil-->
     <div id="menu_desplegable">
-      <div id="close"><i class="far fa-times-circle" onclick="closenav()"></i></div>
+      <div id="close"><i class="far fa-times-circle"></i></div>
       <div id="acceso_rápido" class="clearfix">
         <span id="loginO"><i class="fas fa-user"></i></span>
         <span id="notificacionesO"><i class="fas fa-bell"></i></span>
@@ -109,50 +110,73 @@
   </footer>
   <script type="text/javascript">
 
+//botones para abrir y cerrar el menu de navegacion.
     function opennav() {
       $('#menu_desplegable').style.left = "0";
     }
 
-    function closenav() {
-      $('#menu_desplegable').style.left = "-70%";
+    const closenav = $('#close');
+    const menuMobil = $('#menu_desplegable')
+    function cerrarNav() {
+      menuMobil.style.left = "-70%";
     }
-
+    closenav.addEventListener("touchstart", cerrarNav);
+    menuMobil.addEventListener("touchmove", function (e) {
+      if(event.targetTouches.length == 1) {
+        var touch = event.targetTouches[0];
+        var Xini = touch.pageX;
+        if (touch.pageX<Xini+1000) {
+          cerrarNav();
+        }
+      }
+    });
+//funcion para abrir y cerrar buscador
     function hide() {
       var buscador = $('#buscador');
-      function delayHeight(maxheight, padding) {
+      function delayHeight(maxheight, padding, duracion) {
         buscador.style.maxHeight = maxheight;
-        setTimeout(function() {buscador.style.padding = padding}, 50);
+        setTimeout(function() {buscador.style.padding = padding}, duracion);
       }
         if (buscador.style.padding === "0px 1%") {
-          delayHeight("90px", "4px 1% 6px 1%");
+          delayHeight("90px", "4px 1% 6px 1%", 0);
         } else {
-          delayHeight("0px", "0px 1%");
+          delayHeight("0px", "0px 1%", 0);
         }
     }
 
-    //Array.potoype.forEach.call() llama al Array en si lo que entiendo es que los HTMLCollections son Arrays dados a Array.prototype por eso hay que declarar explitamente a Array.p https://stackoverflow.com/questions/43743560/foreach-vs-array-prototype-foreach-call
+//Array.potoype.forEach.call() llama al Array en si lo que entiendo es que los HTMLCollections son Arrays dados a Array.prototype por eso hay que declarar explitamente a Array.p https://stackoverflow.com/questions/43743560/foreach-vs-array-prototype-foreach-call
+//funcion de listas de navegacion para telefonos moviles.
         const aButton = $A('#principal_mobile_list > li > a');
         const listasDesplegable = $A('#principal_mobile_list li > ul');
         const rotarFlechas = document.getElementsByClassName('fa-caret-right');
         function porDefecto() {
             Array.prototype.forEach.call(listasDesplegable, el => {el.style.maxHeight = "0px"});
-            Array.prototype.forEach.call(rotarFlechas, el => {el.classList.remove('rotate')});
+            Array.prototype.forEach.call(rotarFlechas, el => {el.style.transform = "rotate(0deg)"});
           }
         porDefecto();
-        for(let i = 0; i < aButton.length; i++){
+        var longitud = aButton.length;
+        for(let i = 0;i < longitud; i++){
            aButton[i].addEventListener("touchstart", function() {
-            var desplegar = function (height) {
+            var desplegar = function (height, rotate) {
                listasDesplegable[i].style.maxHeight = height;
-               rotarFlechas[i].classList.toggle('rotate');
+               rotarFlechas[i].style.transform = rotate;
              }
                 if (listasDesplegable[i].style.maxHeight <= "10px") {
                   porDefecto();
-                  desplegar("200px");
+                  desplegar("200px", "rotate(90deg)");
                 } else {
-                  desplegar("0px");
+                  desplegar("0px", "rotate(0deg)");
                 }
           });
         }
+
+//callback para cerrar menu de navegacion
+const listasBotonesA = $A('#principal_mobile_list li ul li a');
+var longituh = listasBotonesA.length;
+for (let i = 0; i < longituh; i++) {
+  listasBotonesA[i].addEventListener('touchstart', cerrarNav);
+}
+
 
     function $(selector) {
       return document.querySelector(selector);

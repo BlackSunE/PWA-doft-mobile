@@ -32,6 +32,8 @@
   <!--Google fonts-->
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
+  <!--removiendo-touch-styles-internet explorer-->
+  <meta name="msapplication-tap-highlight" content="no">
 </head>
 <body>
   <header>
@@ -115,6 +117,8 @@
       $('#menu_desplegable').style.left = "0";
     }
 
+    if()
+
     const closenav = $('#close');
     const menuMobil = $('#menu_desplegable')
     function cerrarNav() {
@@ -122,12 +126,17 @@
     }
     closenav.addEventListener("touchstart", cerrarNav);
     menuMobil.addEventListener("touchmove", function (e) {
-      if(event.targetTouches.length == 1) {
-        var touch = event.targetTouches[0];
-        var Xini = touch.pageX;
-        if (touch.pageX<Xini+1000) {
-          cerrarNav();
+      var obtenerPosicion = function () {
+        var point = {};
+        if(e.targetTouches){
+          point.x = e.targetTouches[0].clientX;
+          point.y = e.targetTouches[0].clientY;
         }
+        return point;
+      }
+      if (e.touches) {
+        var Xini = e.targetTouches[0];
+        this.style.transform = ""
       }
     });
 //funcion para abrir y cerrar buscador
@@ -177,6 +186,124 @@ for (let i = 0; i < longituh; i++) {
   listasBotonesA[i].addEventListener('touchstart', cerrarNav);
 }
 
+//añadiendo soporte para todos los navegadores en eventos de inicio, movimiento y final para la mayoria de buscadores y dispositivos.
+//Encontrar puntero y guardar puntero
+function getGesturePointFromEvent(evt) {
+    var point = {};
+
+    if(evt.targetTouches) {
+      // Prefer Touch Events
+      point.x = evt.targetTouches[0].clientX;
+      point.y = evt.targetTouches[0].clientY;
+    } else {
+      // Either Mouse event or Pointer Event
+      point.x = evt.clientX;
+      point.y = evt.clientY;
+    }
+
+    return point;
+  }
+//optimizacion de frames para touchmove y pointermove.
+  function onAnimFrame() {
+  if(!rafPending) {
+    return;
+  }
+
+  var differenceInX = initialTouchPos.x - lastTouchPos.x;
+
+  var newXTransform = (currentXPosition - differenceInX)+'px';
+  var transformStyle = 'translateX('+newXTransform+')';
+  element.style.webkitTransform = transformStyle;
+  element.style.MozTransform = transformStyle;
+  element.style.msTransform = transformStyle;
+  element.style.transform = transformStyle;
+
+  rafPending = false;
+}
+// Encargado de los gestos de inicio
+this.handleGestureStart = function(evt) {
+  evt.preventDefault();
+
+  if(evt.touches && evt.touches.length > 1) {
+    return;
+  }
+
+  // Add the move and end listeners
+  if (window.PointerEvent) {
+    evt.target.setPointerCapture(evt.pointerId);
+  } else {
+    // Add Mouse Listeners
+    document.addEventListener('mousemove', this.handleGestureMove, true);
+    document.addEventListener('mouseup', this.handleGestureEnd, true);
+  }
+
+  initialTouchPos = getGesturePointFromEvent(evt);
+
+  swipeFrontElement.style.transition = 'initial';
+}.bind(this);
+
+// Encargdo de los gestos de fin
+this.handleGestureEnd = function(evt) {
+  evt.preventDefault();
+
+  if(evt.touches && evt.touches.length > 0) {
+    return;
+  }
+
+  rafPending = false;
+
+  // Remove Event Listeners
+  if (window.PointerEvent) {
+    evt.target.releasePointerCapture(evt.pointerId);
+  } else {
+    // Remove Mouse Listeners
+    document.removeEventListener('mousemove', this.handleGestureMove, true);
+    document.removeEventListener('mouseup', this.handleGestureEnd, true);
+  }
+
+  updateSwipeRestPosition();
+
+  initialTouchPos = null;
+}.bind(this);
+
+//encargado de los eventos de movimiento.
+this.handleGestureMove = function (evt) {
+  evt.preventDefault();
+
+  if(!initialTouchPos) {
+    return;
+  }
+
+  lastTouchPos = getGesturePointFromEvent(evt);
+
+  if(rafPending) {
+    return;
+  }
+
+  rafPending = true;
+
+  window.requestAnimFrame(onAnimFrame);
+}.bind(this);
+
+function supportEvents(element) {
+// Check if pointer events are supported.
+  if (window.PointerEvent) {
+    // Add Pointer Event Listener
+    element.addEventListener('pointerdown', this.handleGestureStart, true);
+    element.addEventListener('pointermove', this.handleGestureMove, true);
+    element.addEventListener('pointerup', this.handleGestureEnd, true);
+    element.addEventListener('pointercancel', this.handleGestureEnd, true);
+  } else {
+    // Add Touch Listener
+    element.addEventListener('touchstart', this.handleGestureStart, true);
+    element.addEventListener('touchmove', this.handleGestureMove, true);
+    element.addEventListener('touchend', this.handleGestureEnd, true);
+    element.addEventListener('touchcancel', this.handleGestureEnd, true);
+
+    // Add Mouse Listener
+    element.addEventListener('mousedown', this.handleGestureStart, true);
+  }
+}
 
     function $(selector) {
       return document.querySelector(selector);

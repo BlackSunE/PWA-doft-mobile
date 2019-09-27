@@ -107,6 +107,13 @@ differences and focus ring */
   font-size: 28px;
 }
 
+.rotate {
+	-webkit-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
 [id$="O"]:first-child {
   padding-left: 30px;
 }

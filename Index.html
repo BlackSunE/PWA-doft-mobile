@@ -33,8 +33,8 @@
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
   <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
 </head>
-<body>
-  <header style="z-index: 10;">
+<body style="z-index: 10;">
+  <header>
     <div id="barras"><i class="fas fa-bars" onclick="opennav()"></i></div>
     <div id="Logo">
       <a href="index.html">
@@ -87,18 +87,23 @@
       <input type="text" name="Buscar" required="" autocomplete="off" placeholder="Buscar..."><button class="cancel-search" type="reset" value="reset"><i class="fas fa-times"></i></button>
     </form>
   </div>
-  <div id="fondo-menu">
+  <div id="fondo-menu" style="z-index: -10;">
   </div>
   <section>
     <img src="./Images/Condimento para tacos hecho en casa 2.jpg" alt="tacos" style="width:100%;">
   </section>
+  <div class="floating" style="display: none;">
+	  <div class="close-float"><i class="far fa-times-circle" onclick="closeinfo()"></i></div>
+	  <div class="info">
+	  </div>
+  </div>	
   <footer>
   	<ul>
-  		<li name="content"><a>Social-media</a></li>
+  		<li name="content"><a onClick="mostrarInfo()">Social-media</a></li>
   		<li><a>Novedades</a></li>
   		<li><a>Acerca de</a></li>
-  		<li name="content"><a>Ayuda</a></li>
-  		<li name="content"><a>Contacto</a></li>
+  		<li name="content"><a onClick="mostrarInfo()">Ayuda</a></li>
+  		<li name="content"><a onClick="mostrarInfo()">Contacto</a></li>
   	</ul>
   	<ul>
   		<li><a><i class="fab fa-rocketchat"></i></a></li>
@@ -131,14 +136,12 @@
 	var menu = $('#menu_desplegable');
 	function opennav() {
 		menu.style.left = "0";
-		menu.style.zIndex = "13";
-		darFondo('1', '12', 'none');
+		darFondo('1');
     }
 	  
     function closenav() {
 		menu.style.left = "-70%";
-		menu.style.zIndex = "0";
-		darFondo('0', '-10', '10');
+		darFondo('0');
     }
 	  
     //Array.potoype.forEach.call() llama al Array en si lo que entiendo es que los HTMLCollections son Arrays dados a Array.prototype por eso hay que declarar explitamente a Array.p https://stackoverflow.com/questions/43743560/foreach-vs-array-prototype-foreach-call
@@ -167,16 +170,35 @@
 	  
 	//fondo menu
 	  
-	function darFondo(numero, posicion, header) {
-		var fondo = $('#fondo-menu');
-		var cabeza = $('header');
-		fondo.style.opacity = numero;
-		fondo.style.zIndex = posicion;
-		if (cabeza.hasAttribute('style')){
-			cabeza.removeAttribute('style');
-		} else {
-			cabeza.setAttribute('style', 'z-index: 10;')
+	function darFondo(numero) {
+		var fondo = [$('body'), $('#fondo-menu')];
+		var demorar = function(index,posicion,tiempo) {
+			setTimeout(function(){fondo[index].style.zIndex = posicion;}, tiempo);
 		}
+		fondo[1].style.opacity = numero;
+		if (fondo[0].hasAttribute('style')){
+			demorar(1,'12', 0);
+			fondo[0].removeAttribute('style');
+		} else {
+			demorar(1,'-10', 500);
+			demorar(0,'10', 500);
+		}
+	}
+	  
+	//cuadro de informacion flotante
+	
+	function mostrarInfo() {
+		var flotante = $('.floating');
+		flotante.style.display = 'block';
+		flotante.style.zIndex = '13';
+		darFondo('1');
+	}
+	  
+	function closeinfo() {
+		var flotante = $('.floating');
+		flotante.style.display = 'none';
+		flotante.style.zIndex = 'inherit';
+		darFondo('0');
 	}
 	  
 	//Selectores callbacks

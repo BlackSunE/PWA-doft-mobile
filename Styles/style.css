@@ -43,6 +43,7 @@ a {
   -o-transition: left 0.4s ease;
   transition: left 0.4s ease;
   overflow-y: scroll;
+  z-index: 13;
 }
 /* Webkit / Chrome Specific CSS to remove tap
 highlight color  Safari and Chrome*/
@@ -121,9 +122,9 @@ differences and focus ring */
 	width: 100vw;
 	background: rgba(0,0,0,0.35);
 	opacity: 0;
-	-webkit-transition: opacity .3s;
-	-o-transition: opacity .3s;
-	transition: opacity .3s;
+	-webkit-transition: opacity .3s ease;
+	-o-transition: opacity .3s ease;
+	transition: opacity .3s ease;
 }
 
 [id$="O"]:first-child {
@@ -199,6 +200,27 @@ body {
 
 *, *:focus {
   outline: none;
+}
+
+.floating {
+	position: absolute;
+	background: #fff;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 300px;
+	height: 600px;
+}
+
+.close-float .fa-times-circle{
+	margin: 7px;
+}
+
+.info {
+	background: #000;
+	height: 90%;
+	width: 80%;
+	margin: 10%;
 }
 
 footer {
